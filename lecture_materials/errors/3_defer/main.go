@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"os"
-	"regexp"
 )
 
 type Person struct {
@@ -12,15 +11,6 @@ type Person struct {
 }
 
 func Run() (err error) {
-	/*
-		defer func() {
-			fmt.Println("defer 3")
-			//if r := recover(); r != nil {
-			//	err = fmt.Errorf("panic %v", r)
-			//}
-		}()
-	*/
-
 	/*
 		v := 5
 		defer func(i int) {
@@ -31,29 +21,16 @@ func Run() (err error) {
 		v++
 	*/
 
-	// defer fmt.Println("defer 1")
+	defer fmt.Println("defer 1")
 
-	file, err := os.Open("errors/4_panic/kek.txt")
+	file, err := os.Open("errors/3_defer/kek.txt")
 	if err != nil {
 		return err
 	}
 
-	// defer file.Close()
+	defer file.Close()
 
-	var p *Person
-	p.Surname = "kek"
-
-	var i any = p
-	_ = i.(int)
-
-	vec := []int{1, 2, 3}
-	vec[5]++
-
-	i, _ = regexp.Compile("(?P<Year>\\d{4}") // MustCompile
-
-	panic("test")
-
-	file.Close()
+	fmt.Println("hello!")
 
 	return nil
 }
@@ -64,7 +41,7 @@ func main() {
 		return
 	}
 
-	Run2()
+	// Run2()
 
 	fmt.Println("ok")
 }

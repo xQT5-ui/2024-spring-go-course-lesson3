@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"os"
 	"regexp"
 )
 
@@ -21,25 +20,6 @@ func Run() (err error) {
 		}()
 	*/
 
-	/*
-		v := 5
-		defer func(i int) {
-			fmt.Println("defer 2")
-			fmt.Println("passed via arg", i)
-			//fmt.Println("passed via capture", v)
-		}(v)
-		v++
-	*/
-
-	// defer fmt.Println("defer 1")
-
-	file, err := os.Open("errors/4_panic/kek.txt")
-	if err != nil {
-		return err
-	}
-
-	// defer file.Close()
-
 	var p *Person
 	p.Surname = "kek"
 
@@ -53,8 +33,6 @@ func Run() (err error) {
 
 	panic("test")
 
-	file.Close()
-
 	return nil
 }
 
@@ -64,26 +42,5 @@ func main() {
 		return
 	}
 
-	Run2()
-
 	fmt.Println("ok")
-}
-
-func Run2() {
-	idx := 0
-	var idxs []int
-	for {
-		idx++
-		idxs = append(idxs, idx)
-		defer func(idx int) {
-			if idx%100000 == 0 {
-				idxs = nil
-				fmt.Println("defer", idx)
-			}
-		}(idx)
-
-		if idx%100000 == 0 {
-			fmt.Println("iter", idx)
-		}
-	}
 }
